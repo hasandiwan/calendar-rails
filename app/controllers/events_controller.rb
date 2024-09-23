@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_event, only: %i[ edit update destroy ]
 
   # GET /events or /events.json
@@ -55,6 +56,17 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # POST /qr
+  def qr
+    qr = RQRCode::QRCode.new(params[:text])
+    png = qr.as_png
+    IO::binwrite("#{Rails.root}/public/qr.png", png)
+    ret = {:string => qr.to_s, :svg => qr.as_svg( color: "000", shape_rendering: "crispEdges", module_size: 11, standalone: true, use_path: true), :png => "https://outside.d8u.us/qr.png", text: params[:text]}
+    render json: ret
+    return
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
