@@ -71,5 +71,8 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+    # disable logging of whiny requests
+    config.web_console.whiny_requests = false
+
   config.hosts << 'outside.d8u.us:53002'
 end

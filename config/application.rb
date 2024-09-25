@@ -24,8 +24,5 @@ module Calendar
     # Let rails serve static files in the public/ directory
     config.public_file_server.enabled = true
 
-    # disable logging of whiny requests
-    config.web_console.whiny_requests = false
-
   end
 end
