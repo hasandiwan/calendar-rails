@@ -65,14 +65,17 @@ class EventsController < ApplicationController
     qr = RQRCode::QRCode.new(params[:text])
     png = qr.as_png
     IO::binwrite("#{Rails.root}/public/qr.png", png)
-    url = URI('https://api.imgbb.com/1/upload?key=904f9669f28a4b17ced781bb497d7d5e')
-    header = {'Content-Type': 'image/png'}
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new(uri.request_uri, header)
-    request.body = Base64.encode64(IO.binread("#{Rails.root}/public/qr.png"))
-    response = http.request(request)
-    imgbb_hash = JSON.parse(response.body)
-    ret = {:string => qr.to_s, :remote => imgbb_hash[:data][:image][:url], :svg => qr.as_svg( color: "000", shape_rendering: "crispEdges", module_size: 11, standalone: true, use_path: true), text: params[:text], :time =>  (Time.now.to_f * 1000).to_i-start}
+    # FIXME
+    #url = URI('https://api.imgbb.com/1/upload?key=904f9669f28a4b17ced781bb497d7d5e')
+    #header = {'Content-Type': 'image/png'}
+    #http = Net::HTTP.new(url.host, url.port)
+    #http.use_ssl = true
+    #request = Net::HTTP::Post.new(url.request_uri, header)
+    #request.body = Base64.encode64(IO.binread("#{Rails.root}/public/qr.png"))
+    #response = http.request(request)
+    #imgbb_hash = JSON.parse(response.body)
+    #byebug
+    ret = {:string => qr.to_s,:svg => qr.as_svg( color: "000", shape_rendering: "crispEdges", module_size: 11, standalone: true, use_path: true), text: params[:text], :time =>  (Time.now.to_f * 1000).to_i-start}
     render json: ret
     return
   end
@@ -89,10 +92,6 @@ class EventsController < ApplicationController
 
     def convert_date(date)
       I18n.l(date&.to_datetime || Time.zone.now)
-    end
-
-    def auth
-      Current.account != nil
     end
 
     def set_event
