@@ -1,0 +1,8 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+lazaro_nixon:
+  email: lazaronixon@hotmail.com
+  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+  calendar_id: https://calendar.google.com/calendar/ical/prolific.programmer%40gmail.com/private-d3f6ec2c2ab1f4e4f527e6a517491ef2/basic.ics
+  name: Lazaro Nixon
+  verified: true
