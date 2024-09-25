@@ -7,6 +7,8 @@ ruby '3.1.1'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.2', '>= 7.0.2.4'
+#gem "rails", '~> 7.1'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -33,7 +35,7 @@ gem 'cssbundling-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
+#gem 'redis', '~> 4.0'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -85,14 +87,17 @@ gem 'rubocop-rails'
 
 gem "byebug", "~> 11.1"
 
-gem "authentication-zero", "~> 3.0"
+gem "authentication-zero", "~> 2.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 # Use Redis adapter to run additional authentication features
 gem "redis", "~> 4.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 gem "kredis"
+# Use Pwned to check if a password has been found in any of the huge data breaches [https://github.com/philnash/pwned]
+gem "pwned"
 # Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
 gem "omniauth"
 # Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
 gem "omniauth-rails_csrf_protection"
+gem 'icalendar', '~> 2.10', '>= 2.10.3'
